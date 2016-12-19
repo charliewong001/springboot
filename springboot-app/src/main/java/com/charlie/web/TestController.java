@@ -25,4 +25,10 @@ public class TestController {
     public String test() {
         return testService.test();
     }
+
+    @RequestMapping("/save")
+    public String save() {
+        testService.saveUser();
+        return "success";
+    }
 }
