@@ -27,6 +27,7 @@ public class TestController {
     }
 
     @RequestMapping("/save")
+    @ResponseBody
     public String save() {
         testService.saveUser();
         return "success";

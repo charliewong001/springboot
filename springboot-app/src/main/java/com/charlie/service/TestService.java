@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.charlie.dao.UserMapper;
 import com.charlie.model.User;
@@ -24,6 +25,19 @@ public class TestService {
         User u = new User();
         u.setAge(18);
         u.setName("charlie");
-        userMapper.insert(u);
+        try {
+            userMapper.insert(u);
+            throwException();
+            u.setName("udpate");
+            userMapper.updateByPrimaryKey(u);
+        } catch (Exception e) {
+            e.printStackTrace();
+            TransactionAspectSupport.currentTransactionStatus()
+                    .setRollbackOnly();
+        }
+    }
+
+    private void throwException() {
+        throw new RuntimeException();
     }
 }
