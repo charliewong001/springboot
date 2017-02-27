@@ -2,10 +2,13 @@ package com.charlie.web;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.charlie.entity.ReturnBean;
 
 @RestController
 public class TestController {
@@ -22,8 +25,9 @@ public class TestController {
     @RequestMapping("/save")
     @ResponseBody
     public String save() {
-        restTemplate.getForEntity("http://SPRINGBOOT-SERVICE/test",
-                String.class);
-        return "success";
+        ResponseEntity<ReturnBean> response = restTemplate.getForEntity(
+                "http://SPRINGBOOT-SERVICE/test", ReturnBean.class);
+        ReturnBean rb = response.getBody();
+        return rb.toString();
     }
 }

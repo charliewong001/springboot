@@ -17,6 +17,7 @@
         <module>springboot-api</module>
         <module>springboot-service</module>
     <module>springboot-register</module>
+    <module>springboot-entity</module>
   </modules>
     
     <dependencyManagement>
