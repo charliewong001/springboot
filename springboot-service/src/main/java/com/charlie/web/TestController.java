@@ -15,7 +15,7 @@ public class TestController {
     @Resource
     private TestService testService;
 
-    @RequestMapping(value = "test", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ReturnBean test() {
         ReturnBean rb = new ReturnBean();
         rb.setCode("0000");
