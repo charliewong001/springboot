@@ -22,12 +22,13 @@ public class TestService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveUser() {
+        System.out.println("save user start execute....");
         User u = new User();
         u.setAge(18);
         u.setName("charlie");
         try {
             userMapper.insert(u);
-            throwException();
+            //            throwException();
             u.setName("udpate");
             userMapper.updateByPrimaryKey(u);
         } catch (Exception e) {
@@ -35,6 +36,7 @@ public class TestService {
             TransactionAspectSupport.currentTransactionStatus()
                     .setRollbackOnly();
         }
+        System.out.println("save user execute finished");
     }
 
     private void throwException() {
