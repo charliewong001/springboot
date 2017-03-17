@@ -10,7 +10,7 @@ import com.charlie.entity.ReturnBean;
 import com.charlie.service.TestService;
 
 @RestController
-public class TestController {
+public class TestServiceController {
 
     @Resource
     private TestService testService;
