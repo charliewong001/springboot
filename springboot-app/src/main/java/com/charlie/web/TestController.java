@@ -19,6 +19,7 @@ public class TestController {
     @ResponseBody
     public String save() {
         ReturnBean rb = testClient.saveUser("hello", 18);
+
         return rb.toString();
     }
 }
