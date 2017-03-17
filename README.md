@@ -1,0 +1,7 @@
+spring-cloud feign模式流程记录
+
+客户端引入接口定义包springboot-api
+请求通过http协议到达springmvc客户端springboot-app
+springboot-app通过springcloud feign调用spring-service的controller
+
+接口TestClient的方法上定义了请求的Url，通过这个Url对应到了spring-service中controller中方法的url，因此客户端才知道调用的是服务端的哪个方法

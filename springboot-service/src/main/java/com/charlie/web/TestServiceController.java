@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.charlie.entity.ReturnBean;
@@ -16,12 +17,13 @@ public class TestServiceController {
     private TestService testService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ReturnBean test() {
+    @ResponseBody
+    public ReturnBean test(String name, int age) {
         ReturnBean rb = new ReturnBean();
         rb.setCode("0000");
         rb.setMsg("success");
         try {
-            testService.saveUser();
+            testService.saveUser(name, age);
         } catch (Exception e) {
             rb.setCode("0001");
             rb.setMsg("error");

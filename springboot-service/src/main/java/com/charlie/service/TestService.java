@@ -24,16 +24,15 @@ public class TestService {
 
     @ServiceLog(description = "haha")
     @Transactional(propagation = Propagation.REQUIRED)
-    public void saveUser() {
-        System.out.println("save user start execute....");
+    public void saveUser(String name, int age) {
         User u = new User();
-        u.setAge(18);
-        u.setName("charlie");
+        u.setAge(age);
+        u.setName(name);
         try {
             userMapper.insert(u);
             //            throwException();
-            u.setName("udpate");
-            userMapper.updateByPrimaryKey(u);
+            //            u.setName("udpate");
+            //            userMapper.updateByPrimaryKey(u);
         } catch (Exception e) {
             e.printStackTrace();
             TransactionAspectSupport.currentTransactionStatus()
