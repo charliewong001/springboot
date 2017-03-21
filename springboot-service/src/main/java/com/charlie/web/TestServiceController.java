@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.charlie.aspect.Log;
 import com.charlie.entity.ReturnBean;
 import com.charlie.service.TestService;
 
@@ -16,9 +17,11 @@ public class TestServiceController {
     @Resource
     private TestService testService;
 
+    @Log
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public ReturnBean test(String name, int age) {
+        System.out.println("1111");
         ReturnBean rb = new ReturnBean();
         rb.setCode("0000");
         rb.setMsg("success");

@@ -20,6 +20,6 @@ public class TestAppController {
     public String save() {
         ReturnBean rb = testClient.saveUser("hello", 18);
 
-        return rb.toString();
+        return rb == null ? "null" : rb.toString();
     }
 }

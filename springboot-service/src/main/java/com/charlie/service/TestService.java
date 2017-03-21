@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import com.charlie.aspect.ServiceLog;
+import com.charlie.aspect.Log;
 import com.charlie.dao.UserMapper;
 import com.charlie.model.User;
 
@@ -17,14 +17,15 @@ public class TestService {
     @Resource
     private UserMapper userMapper;
 
-    @ServiceLog(description = "haha")
+    @Log
     public String test() {
         return "test";
     }
 
-    @ServiceLog(description = "haha")
+    @Log
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveUser(String name, int age) {
+        System.out.println("save user");
         User u = new User();
         u.setAge(age);
         u.setName(name);
