@@ -21,16 +21,11 @@ public class TestServiceController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public ReturnBean test(String name, int age) {
-        System.out.println("1111");
         ReturnBean rb = new ReturnBean();
         rb.setCode("0000");
         rb.setMsg("success");
-        try {
-            testService.saveUser(name, age);
-        } catch (Exception e) {
-            rb.setCode("0001");
-            rb.setMsg("error");
-        }
+        testService.saveUser(name, age);
+
         return rb;
     }
 }
