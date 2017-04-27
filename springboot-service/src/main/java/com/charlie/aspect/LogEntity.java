@@ -9,6 +9,7 @@ public class LogEntity {
     private Object[] paramValues;
     private String methodName;
     private Map<String, Object> params;
+    private long startTime;
 
     public LogEntity(Class<?> targetClass, String[] paramNames,
             Object[] paramValues, String methodName) {
@@ -53,11 +54,16 @@ public class LogEntity {
     public Map<String, Object> getParams() {
         if (params == null) {
             params = new HashMap<String, Object>();
-            if (paramValues != null && paramValues.length > 0
-                    && paramNames != null && paramNames.length > 0) {
+            if (paramValues != null && paramValues.length > 0) {
+                //Controller之外的代理类无法无法获取参数名
+                boolean hasNames = true;
+                if (paramNames == null || paramNames.length == 0) {
+                    hasNames = false;
+                }
                 params = new HashMap<String, Object>();
                 for (int i = 0; i < paramValues.length; i++) {
-                    params.put(paramNames[i], paramValues[i]);
+                    params.put(hasNames ? paramNames[i] : "arg" + i,
+                            paramValues[i]);
                 }
             }
         }
@@ -66,6 +72,14 @@ public class LogEntity {
 
     public void setParams(Map<String, Object> params) {
         this.params = params;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
 }
